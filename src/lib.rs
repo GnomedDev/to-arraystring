@@ -1,9 +1,10 @@
 //! A no-alloc version of [`alloc::string::ToString`] implemented for integer types formatting into an [`ArrayString`].
 #![no_std]
+#![warn(clippy::pedantic)]
 
 use arrayvec::ArrayString;
 
-use macros::*;
+use macros::{gen_fmt_to_buf, gen_impl};
 
 mod erased;
 mod macros;
@@ -18,9 +19,10 @@ impl ToArrayString for bool {
     type ArrayString = ArrayString<5>;
 
     fn to_arraystring(self) -> Self::ArrayString {
-        match self {
-            true => ArrayString::from("true").unwrap(),
-            false => ArrayString::from("false").unwrap(),
+        if self {
+            ArrayString::from("true").unwrap()
+        } else {
+            ArrayString::from("false").unwrap()
         }
     }
 }
@@ -63,7 +65,7 @@ mod usize_impls {
 
 #[cfg(target_pointer_width = "64")]
 mod usize_impls {
-    use super::*;
+    use super::{fmt_int_to_buf, ArrayString, ToArrayString};
 
     impl_int!(ToArrayString<20> for usize);
     impl_int!(ToArrayString<21> for isize);

@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Cargo test
+        run: cargo test
+
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Cargo clippy
+        run: cargo clippy -- --deny warnings
+
+  no-alloc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install no-std/no-alloc target
+        run: rustup target add x86_64-unknown-none
+
+      - name: Check build on no-std/no-alloc target
+        run: cargo build --target x86_64-unknown-none

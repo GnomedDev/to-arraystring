@@ -1,3 +1,3 @@
 # to-arraystring
 
-A no-std version of ToString implemented for integer types formatting into an ArrayString.
+A no-std version of ToString implemented for bool/integer/float types formatting into an ArrayString.

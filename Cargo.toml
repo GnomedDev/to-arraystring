@@ -2,7 +2,9 @@
 name = "to-arraystring"
 version = "0.1.0"
 edition = "2021"
-
+license = "MIT"
+description = "A no-alloc ToString, for bool/integer/float types"
+repository = "https://github.com/GnomedDev/to-arraystring"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]

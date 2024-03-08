@@ -1,4 +1,4 @@
-//! A no-alloc version of [`alloc::string::ToString`] implemented for integer types formatting into an [`ArrayString`].
+//! A no-alloc version of [`alloc::string::ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
 #![no_std]
 #![warn(clippy::pedantic)]
 
@@ -9,7 +9,7 @@ use macros::{gen_fmt_to_buf, gen_impl};
 mod erased;
 mod macros;
 
-/// A no-alloc version of [`alloc::string::ToString`] implemented for integer types formatting into an [`ArrayString`].
+/// A no-alloc version of [`alloc::string::ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
 pub trait ToArrayString: Copy {
     type ArrayString: erased::ArrayStringErased;
     fn to_arraystring(self) -> Self::ArrayString;

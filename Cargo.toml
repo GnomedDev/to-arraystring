@@ -8,3 +8,7 @@ edition = "2021"
 [dependencies]
 arrayvec = { version = "0.7", default-features = false }
 itoa = "1.0.10"
+ryu = "1.0.17"
+
+[dev-dependencies]
+paste = "1"

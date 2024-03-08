@@ -14,6 +14,17 @@ pub trait ToArrayString: Copy {
     fn to_arraystring(self) -> Self::ArrayString;
 }
 
+impl ToArrayString for bool {
+    type ArrayString = ArrayString<5>;
+
+    fn to_arraystring(self) -> Self::ArrayString {
+        match self {
+            true => ArrayString::from("true").unwrap(),
+            false => ArrayString::from("false").unwrap(),
+        }
+    }
+}
+
 gen_fmt_to_buf!(fmt_int_to_buf(itoa::Integer));
 gen_fmt_to_buf!(fmt_float_to_buf(ryu::Float));
 

@@ -7,6 +7,9 @@ rust-version = "1.56"
 description = "A no-alloc ToString, for bool/integer/float types"
 repository = "https://github.com/GnomedDev/to-arraystring"
 
+categories = ["value-formatting", "no-std::no-alloc"]
+keywords = ["arraystring", "formatting", "no-alloc", "optimisation"]
+
 [dependencies]
 arrayvec = { version = "0.7", default-features = false }
 itoa = "1.0.10"

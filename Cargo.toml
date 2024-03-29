@@ -3,9 +3,9 @@ name = "to-arraystring"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
+rust-version = "1.56"
 description = "A no-alloc ToString, for bool/integer/float types"
 repository = "https://github.com/GnomedDev/to-arraystring"
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 arrayvec = { version = "0.7", default-features = false }

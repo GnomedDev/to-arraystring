@@ -1,6 +1,12 @@
-//! A no-alloc version of [`alloc::string::ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
+//! A no-alloc version of [`ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
 #![no_std]
 #![warn(clippy::pedantic)]
+
+#[cfg(any(doc, test))]
+extern crate alloc;
+
+#[cfg(any(doc, test))]
+use alloc::string::ToString;
 
 use arrayvec::ArrayString;
 
@@ -9,9 +15,15 @@ use macros::{gen_fmt_to_buf, gen_impl};
 mod erased;
 mod macros;
 
-/// A no-alloc version of [`alloc::string::ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
+/// A no-alloc version of [`ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
 pub trait ToArrayString: Copy {
+    /// An associated type to turn [`ArrayString`]'s const generic into a type generic,
+    /// working around limitations of the current type system.
+    ///
+    /// This is always [`ArrayString`], but in generic code this only usable as `impl Deref<Target = str>`.
     type ArrayString: erased::ArrayStringErased;
+
+    /// Returns the value's formatted representation in an appropriately sized [`ArrayString`].
     fn to_arraystring(self) -> Self::ArrayString;
 }
 
@@ -73,11 +85,7 @@ mod usize_impls {
 
 #[cfg(test)]
 mod tests {
-    extern crate alloc;
-
-    use alloc::string::ToString;
-
-    use crate::ToArrayString;
+    use super::*;
 
     fn test_impl<T: ToArrayString + ToString>(min: T, max: T) {
         assert_eq!(&*min.to_arraystring(), min.to_string());

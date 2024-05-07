@@ -32,6 +32,17 @@ pub trait ToArrayString: Copy {
     fn to_arraystring(self) -> Self::ArrayString;
 }
 
+impl ToArrayString for char {
+    type ArrayString = ArrayString<4>;
+
+    fn to_arraystring(self) -> Self::ArrayString {
+        let mut buffer = [0; 4];
+        let char_str = self.encode_utf8(&mut buffer);
+
+        ArrayString::from(char_str).unwrap()
+    }
+}
+
 impl ToArrayString for bool {
     type ArrayString = ArrayString<5>;
 

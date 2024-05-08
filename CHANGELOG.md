@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Added inline to all implementations, which actually reduces codegen as constant folding becomes much better.
+
 ## 0.1.2
 
 - Added implementation for `char`

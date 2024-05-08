@@ -1,3 +1,8 @@
+## 0.1.2
+
+- Added implementation for `char`
+- Added identity implementation for `ArrayString`
+
 ## 0.1.1
 
 - Documented MSRV as 1.56.

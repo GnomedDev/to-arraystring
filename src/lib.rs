@@ -22,6 +22,12 @@ mod macros;
 
 /// A no-alloc version of [`ToString`] implemented for bool/integer/float types formatting into an [`ArrayString`].
 pub trait ToArrayString: Copy {
+    /// The maximum length that Self can be formatted into. This is used for the capacity generic of [`ArrayString`].
+    ///
+    /// # Note for implementors
+    /// This must match the capacity generic used in [`ArrayString`], otherwise logic bugs and panics may occur.
+    const MAX_LENGTH: usize;
+
     /// An associated type to turn [`ArrayString`]'s const generic into a type generic,
     /// working around limitations of the current type system.
     ///
@@ -33,6 +39,7 @@ pub trait ToArrayString: Copy {
 }
 
 impl<const MAX_LENGTH: usize> ToArrayString for ArrayString<MAX_LENGTH> {
+    const MAX_LENGTH: usize = MAX_LENGTH;
     type ArrayString = ArrayString<MAX_LENGTH>;
 
     #[inline]
@@ -42,6 +49,7 @@ impl<const MAX_LENGTH: usize> ToArrayString for ArrayString<MAX_LENGTH> {
 }
 
 impl ToArrayString for char {
+    const MAX_LENGTH: usize = 4;
     type ArrayString = ArrayString<4>;
 
     #[inline]
@@ -54,6 +62,7 @@ impl ToArrayString for char {
 }
 
 impl ToArrayString for bool {
+    const MAX_LENGTH: usize = 5;
     type ArrayString = ArrayString<5>;
 
     #[inline]

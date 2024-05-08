@@ -14,6 +14,7 @@ macro_rules! gen_impl {
         macro_rules! $name {
             (ToArrayString<$len:literal> for $type:ty) => {
                 impl ToArrayString for $type {
+                    const MAX_LENGTH: usize = $len;
                     type ArrayString = ArrayString<$len>;
 
                     #[inline]

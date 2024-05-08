@@ -35,6 +35,7 @@ pub trait ToArrayString: Copy {
 impl<const MAX_LENGTH: usize> ToArrayString for ArrayString<MAX_LENGTH> {
     type ArrayString = ArrayString<MAX_LENGTH>;
 
+    #[inline]
     fn to_arraystring(self) -> Self::ArrayString {
         self
     }
@@ -43,6 +44,7 @@ impl<const MAX_LENGTH: usize> ToArrayString for ArrayString<MAX_LENGTH> {
 impl ToArrayString for char {
     type ArrayString = ArrayString<4>;
 
+    #[inline]
     fn to_arraystring(self) -> Self::ArrayString {
         let mut buffer = [0; 4];
         let char_str = self.encode_utf8(&mut buffer);
@@ -54,6 +56,7 @@ impl ToArrayString for char {
 impl ToArrayString for bool {
     type ArrayString = ArrayString<5>;
 
+    #[inline]
     fn to_arraystring(self) -> Self::ArrayString {
         if self {
             ArrayString::from("true").unwrap()

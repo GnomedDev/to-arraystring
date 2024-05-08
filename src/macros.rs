@@ -15,6 +15,8 @@ macro_rules! gen_impl {
             (ToArrayString<$len:literal> for $type:ty) => {
                 impl ToArrayString for $type {
                     type ArrayString = ArrayString<$len>;
+
+                    #[inline]
                     fn to_arraystring(self) -> Self::ArrayString {
                         $body(self)
                     }

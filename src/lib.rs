@@ -32,6 +32,14 @@ pub trait ToArrayString: Copy {
     fn to_arraystring(self) -> Self::ArrayString;
 }
 
+impl<const MAX_LENGTH: usize> ToArrayString for ArrayString<MAX_LENGTH> {
+    type ArrayString = ArrayString<MAX_LENGTH>;
+
+    fn to_arraystring(self) -> Self::ArrayString {
+        self
+    }
+}
+
 impl ToArrayString for char {
     type ArrayString = ArrayString<4>;
 

@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Added a required `ToArrayString::MAX_LENGTH` associated constant.
+
 ## 0.1.3
 
 - Added inline to all implementations, which actually reduces codegen as constant folding becomes much better.

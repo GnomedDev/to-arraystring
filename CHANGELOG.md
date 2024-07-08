@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Added a public re-export of `arrayvec::ArrayString` to avoid having to depend on it yourself.
+
 ## 0.2.0
 
 - Added a required `ToArrayString::MAX_LENGTH` associated constant.

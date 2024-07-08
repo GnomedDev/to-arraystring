@@ -6,6 +6,7 @@
 
 #![no_std]
 #![warn(clippy::pedantic)]
+#![allow(clippy::wildcard_imports)]
 
 #[cfg(any(doc, test))]
 extern crate alloc;
@@ -15,7 +16,7 @@ use alloc::string::ToString;
 
 pub use arrayvec::ArrayString;
 
-use macros::{gen_fmt_to_buf, gen_impl};
+use macros::{fmt_float_to_buf, fmt_int_to_buf, impl_float, impl_int};
 
 mod erased;
 mod macros;
@@ -75,12 +76,6 @@ impl ToArrayString for bool {
     }
 }
 
-gen_fmt_to_buf!(fmt_int_to_buf(itoa::Integer));
-gen_fmt_to_buf!(fmt_float_to_buf(ryu::Float));
-
-gen_impl!(impl_int, fmt_int_to_buf);
-gen_impl!(impl_float, fmt_float_to_buf);
-
 impl_float!(ToArrayString<16> for f32);
 impl_float!(ToArrayString<24> for f64);
 
@@ -113,7 +108,7 @@ mod usize_impls {
 
 #[cfg(target_pointer_width = "64")]
 mod usize_impls {
-    use super::{fmt_int_to_buf, ArrayString, ToArrayString};
+    use super::*;
 
     impl_int!(ToArrayString<20> for usize);
     impl_int!(ToArrayString<21> for isize);

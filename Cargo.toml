@@ -17,3 +17,6 @@ ryu = "1.0.17"
 
 [dev-dependencies]
 paste = "1"
+
+[features]
+nonzero_impls = []

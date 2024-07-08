@@ -24,6 +24,7 @@ macro_rules! impl_int {
             }
         }
 
+        #[cfg(feature = "nonzero_impls")]
         impl ToArrayString for core::num::NonZero<$type> {
             const MAX_LENGTH: usize = $len;
             type ArrayString = ArrayString<$len>;
@@ -56,6 +57,8 @@ macro_rules! generate_test {
             #[test]
             fn [<check_ $type>]() {
                 test_impl($type::MIN, $type::MAX);
+
+                #[cfg(feature = "nonzero_impls")]
                 test_impl(core::num::NonZero::<$type>::MIN, core::num::NonZero::<$type>::MAX);
             }
         )*);

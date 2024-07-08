@@ -3,6 +3,8 @@
 //! ## Minimum Supported Rust Version
 //!
 //! This is currently 1.56, and is considered a breaking update to increase.
+//!
+//! - Using the `nonzero_impls` feature, this increases to 1.79.
 
 #![no_std]
 #![warn(clippy::pedantic)]

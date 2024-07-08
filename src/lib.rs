@@ -13,7 +13,7 @@ extern crate alloc;
 #[cfg(any(doc, test))]
 use alloc::string::ToString;
 
-use arrayvec::ArrayString;
+pub use arrayvec::ArrayString;
 
 use macros::{gen_fmt_to_buf, gen_impl};
 

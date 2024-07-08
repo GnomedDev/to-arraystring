@@ -1,3 +1,7 @@
+## 0.2.2
+
+- Added implementations for `NonZero<$Int>` that just forward to the internal type under the `nonzero_impls` feature flag.
+
 ## 0.2.1
 
 - Added a public re-export of `arrayvec::ArrayString` to avoid having to depend on it yourself.
